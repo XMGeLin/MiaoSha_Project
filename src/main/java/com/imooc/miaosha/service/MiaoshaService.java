@@ -40,7 +40,7 @@ public class MiaoshaService {
 			//order_info maiosha_order
 			return orderService.createOrder(user, goods);
 		}else {
-			setGoodsOver(goods.getId());
+			setGoodsOver(goods.getId());   //秒杀结束了，也就是秒杀失败
 			return null;
 		}
 	}
@@ -52,9 +52,9 @@ public class MiaoshaService {
 		}else {
 			boolean isOver = getGoodsOver(goodsId);
 			if(isOver) {
-				return -1;
+				return -1;   //秒杀失败。
 			}else {
-				return 0;
+				return 0;   //还在排队秒杀中
 			}
 		}
 	}

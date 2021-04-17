@@ -34,36 +34,36 @@ public class UserUtil {
 			users.add(user);
 		}
 		System.out.println("create user");
-//		//插入数据库
-//		Connection conn = DBUtil.getConn();    //注意这里的时间register_date 在数据库中
-//		String sql = "insert into miaosha_user(id,nickname, register_date, salt, password,login_count)values(?,?,?,?,?,?)";
-//		//事务将自动提交关闭
-////		conn.setAutoCommit(false);
-//
-//		PreparedStatement pstmt = conn.prepareStatement(sql);
-//		for(int i=0;i<users.size();i++) {
-//			MiaoshaUser user = users.get(i);    //第一个参数指的是SQL语句中的字段 对应
-//			pstmt.setLong(1, user.getId());
-//			pstmt.setString(2, user.getNickname());
-//			pstmt.setTimestamp(3, new Timestamp(user.getRegisterDate().getTime()));
-//			pstmt.setString(4, user.getSalt());
-//			pstmt.setString(5, user.getPassword());
-//			pstmt.setInt(6, user.getLoginCount());
-//			pstmt.addBatch();
-//		}
-//		int[] counts=pstmt.executeBatch();
-//		pstmt.close();
-//
-////		conn.commit();  //执行完毕后，手动提交事务。
-////		conn.setAutoCommit(true);  //然后再把自动提交打开，避免影响其他需要自动提交的操作。
-//
-//		conn.close();
-//		System.out.println(counts.length);
-//		System.out.println("insert to db");
+		//插入数据库
+		Connection conn = DBUtil.getConn();    //注意这里的时间register_date 在数据库中
+		String sql = "insert into miaosha_user(id,nickname, register_date, salt, password,login_count)values(?,?,?,?,?,?)";
+		//事务将自动提交关闭
+//		conn.setAutoCommit(false);
+
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		for(int i=0;i<users.size();i++) {
+			MiaoshaUser user = users.get(i);    //第一个参数指的是SQL语句中的字段 对应
+			pstmt.setLong(1, user.getId());
+			pstmt.setString(2, user.getNickname());
+			pstmt.setTimestamp(3, new Timestamp(user.getRegisterDate().getTime()));
+			pstmt.setString(4, user.getSalt());
+			pstmt.setString(5, user.getPassword());
+			pstmt.setInt(6, user.getLoginCount());
+			pstmt.addBatch();
+		}
+		int[] counts=pstmt.executeBatch();
+		pstmt.close();
+
+//		conn.commit();  //执行完毕后，手动提交事务。
+//		conn.setAutoCommit(true);  //然后再把自动提交打开，避免影响其他需要自动提交的操作。
+
+		conn.close();
+		System.out.println(counts.length);
+		System.out.println("insert to db");
 
 		//登录，生成token
 		String urlString = "http://localhost:8080/login/do_login";
-		File file = new File("/Users/yuhangyuan/Documents/tokens.txt");
+		File file = new File("/tokens.txt");
 		if(file.exists()) {
 			file.delete();
 		}

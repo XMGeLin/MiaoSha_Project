@@ -28,7 +28,8 @@ public class AccessInterceptor  extends HandlerInterceptorAdapter{
 	
 	@Autowired
 	RedisService redisService;
-	
+
+	//在dispatcherServlet之前执行
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {

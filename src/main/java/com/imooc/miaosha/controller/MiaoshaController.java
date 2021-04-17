@@ -105,7 +105,7 @@ public class MiaoshaController implements InitializingBean {
 								   @RequestParam("goodsId")long goodsId,
 								   @PathVariable("path") String path) {
 		model.addAttribute("user", user);
-		if(user == null) {
+		if(user == null) {    //秒杀的时候首先是要判断用户是否已经登录。根据token来判断缓存。
 			return Result.error(CodeMsg.SESSION_ERROR);
 		}
 		//验证path

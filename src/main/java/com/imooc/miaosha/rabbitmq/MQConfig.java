@@ -29,7 +29,7 @@ public class MQConfig {
 
     @Bean
     public Queue queue(){
-        return new Queue(MIOAHSA_QUEUE,true);
+        return new Queue(MIOAHSA_QUEUE,true);  //默认是持久化的
     }
 
     /**

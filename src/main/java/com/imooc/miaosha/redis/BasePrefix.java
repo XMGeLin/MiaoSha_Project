@@ -1,5 +1,7 @@
 package com.imooc.miaosha.redis;
 
+import java.util.Map;
+
 /**
  * 这个是采用模板方法模式。
  */

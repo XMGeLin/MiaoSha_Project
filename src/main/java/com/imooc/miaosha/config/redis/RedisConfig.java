@@ -19,7 +19,7 @@ public class RedisConfig {
     private int poolMaxIdle;
     private int poolMaxWait;//秒
 
-    public void setHost(String host) {
+    public void  setHost(String host) {
         this.host = host;
     }
 
